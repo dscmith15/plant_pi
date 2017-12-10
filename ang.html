@@ -21,11 +21,10 @@ var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
     $scope.firstName = "John";
     $scope.lastName = "Doe";
-    $scope.checktemperature = function(){
-        do{
-             $scope.temperature = loadFile("temper.txt");
-        }
-    while(TRUE);}
+    $scope.checktemperature = function() {
+        $scope.temperature = loadFile("temper.txt");
+    setTimeout(refresh, 1000);
+}
 });
     
 function loadFile(filePath) {
@@ -37,6 +36,18 @@ function loadFile(filePath) {
     result = xmlhttp.responseText;
   }
   return result;
+}
+    
+var refresh = function() {
+  $.ajax({
+    url: "/some/path",
+    cache: false,
+    success: success
+  });
+}
+
+$(function() {
+  refresh();
 }
 
 </script>
