@@ -24,8 +24,7 @@ app.controller('myCtrl', function($scope) {
     $scope.lastName = "Doe";
     $scope.checktemperature = function() {
         $scope.temperature = loadFile("temper.txt");
-    setTimeout(refresh, 1000);
-}
+    }
 });
     
 function loadFile(filePath) {
@@ -38,18 +37,7 @@ function loadFile(filePath) {
   }
   return result;
 }
-    
-var refresh = function() {
-  $.ajax({
-    url: "/some/path",
-    cache: false,
-    success: success
-  });
-}
 
-$(function() {
-  refresh();
-});
 
 </script>
     
