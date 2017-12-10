@@ -1,3 +1,3 @@
 #!/bin/sh
 
-sudo temperv14 -f > /var/www/assets/text/temper.txt
+sudo temperv14 -f > /var/www/temper.txt
