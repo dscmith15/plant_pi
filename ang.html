@@ -2,39 +2,47 @@
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
+
 <body>
 <ng-include src="'temper.txt'"></ng-include>
 <div ng-app="myApp" ng-controller="myCtrl">
 
-First Name: <input type="text" ng-model="firstName"><br>
-Last Name: <input type="text" ng-model="lastName"><br>    
-<br>
-Full Name: {{firstName + " " + lastName}}
-<br>
-Temperature: {{temperature}}
+    First Name: <input type="text" ng-model="firstName"><br>
+    Last Name: <input type="text" ng-model="lastName"><br>    
+    <br>
+    Full Name: {{firstName + " " + lastName}}
+    <br>
+    <br>
+    Temperature: {{temperature}}
 
 </div>
     
 
 
 <script>
-var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope) {
-    $scope.firstName = "John";
-    $scope.lastName = "Doe";
-    $scope.temperature = loadFile("temper.txt");
-});
+    var socket = io();
+    var app = angular.module('myApp', []);
+    window.addEventListener("load", function($scope){ //when page loads
+        $scope.temperature = loadFile("temper.txt");
+    });
     
-function loadFile(filePath) {
-  var result = null;
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.open("GET", filePath, false);
-  xmlhttp.send();
-  if (xmlhttp.status==200) {
-    result = xmlhttp.responseText;
-  }
-  return result;
-}
+ 
+    app.controller('myCtrl', function($scope) {
+        $scope.firstName = "John";
+        $scope.lastName = "Doe";
+    });
+    
+    function loadFile(filePath) {
+      var result = null;
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("GET", filePath, false);
+      xmlhttp.send();
+      if (xmlhttp.status==200) {
+        result = xmlhttp.responseText;
+      }
+      return result;
+    }
 
 
 </script>
