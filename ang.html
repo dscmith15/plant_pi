@@ -21,16 +21,15 @@
 
 
 <script>
-    var socket = io();
     var app = angular.module('myApp', []);
-    window.addEventListener("load", function($scope){ //when page loads
-        var socket = io(); // TIP: io() with no args does auto-discovery
-        socket.on('connect', function () { // TIP: you can avoid listening on `connect` and listen on events directly too!
-            socket.emit('temperature', 'tobi', function (data) {
-                $scope.temperature = data; // data will be 'temper from server'
-            });
+    
+    var socket = io(); // TIP: io() with no args does auto-discovery
+    socket.on('connect', function () { // TIP: you can avoid listening on `connect` and listen on events directly too!
+        socket.emit('temperature', 'tobi', function (data) {
+            $scope.temperature = data; // data will be 'temper from server'
         });
     });
+   
     
  
     app.controller('myCtrl', function($scope) {
