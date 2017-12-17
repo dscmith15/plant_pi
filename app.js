@@ -1,5 +1,5 @@
 var app = require('http').createServer(handler)
-var io = require('socket.io')(app);
+var io = require('socket.io-client')('http://localhost');
 var fs = require('fs');
 
 app.listen(80);
