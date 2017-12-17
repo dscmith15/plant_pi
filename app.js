@@ -5,7 +5,7 @@ var app = express();
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
-app.listen(80);
+app.listen(5000);
 
 function handler (req, res) {
   fs.readFile(__dirname + '/ang.html',
